@@ -1,0 +1,70 @@
+/* Anotações sobre matrizes
+ * CONCEITO DE MATRIZES: Tem um conceito semelhante a vetores, MAS COM UMA DIFERENÇA: Vetores é um tipo de estrutura que
+ * possui apenas 1 dimensão, ou seja, ela é LINEAR/HORIZONTAL(tal como uma lista). Já Matrizes possuem 2 dimensões, OU
+ * SEJA, É BILINEAR/VERTICAL-HORIZONTAL (tal como uma tabulação). Exemplo para melhor visualização:
+ *  
+ *   vetor =  [0, 1, 2, 3, 4, 5, (...)]
+ *  
+ *   matriz = [0-0, 0-1, 0-2, 0-3, 0-4, 0-5,  (...)
+ *  		   1-0, 1-1, 1-2, 1-3, 1-4, 1-5,   (...)
+ *  		   2-0, 2-1, 2-2, 2-3, 2-4, 2-5,   (...)
+ *  		   3-0, 3-1, 3-2, 3-3, 3-4, 3-5,   (...)
+ *  		   (n-1)-0 , ..................,   (...)]
+ *  		   
+ * OBS3: Se vetores tem sua primeira posição iniciada em [0], por ser BILINEAR matrizes iniciam na posição [0,0];
+ * OBS4: Se os vetores estão para as ruas, podemos dizer que matrizes estão mais para bairros, que possuem várias
+ * ruas horizontais (vetores) e verticais (colunas).
+ * 
+ * DECLARAÇÃO:
+ * Tipo_da_variável "Nome_da_Matriz" [X][Y]
+ * Agora nós temos na delcaração do índice, tanto elemento 'X' (a linha) como também o elemento 'Y', que serve jus-
+ * tamente para identificar o eixo VERTICAL (a coluna) da matriz. Exemplo de matrizes: */
+	
+	inteiro num [2][3] /* Matriz do tipo inteiro, chamada 'num'. Ela possui 2 linhas (0 e 1) e
+					 3 colunas (0, 1 e 2). Para melhor visualizar, seria algo assim:
+					 		      num_Y[0]	 ,    num_Y[1]	 ,	num_Y[2] 
+					 num_X [0] =	 [0][0]	 ,	 [0][1]	 ,	 [0][2]	 
+					 num_X [1] =	 [1][0]	 ,	 [1][1]	 ,	 [1][2]
+
+/* E assim como os vetores, matrizes também iniciam COM ÍNDICE '0', mas agora, basta lembrar que por ser BILINEAR,
+ * elas iniciam em [0][0]. O fim de uma matriz, passa agora a ser [X - 1][Y - 1]. E para reforçar o que vimos antes:
+ * TAMANHO NÃO É ÍNDICE!!
+ *
+ * OBS5: Atente que, para o Portugol, se você declarar que uma matriz possui como índices [1][2], a IDE irá alte-
+ * rar ela para virar um VETOR [2], pois ele irá compreender que você declarou uma matriz LINEAR.					
+ *
+ * Para acessar os valores de uma matriz, usaremos o mesmo conceito que usamos para acessar os valores de um vetor
+ *  MAS DESSA VEZ, DEVEMOS TAMBÉM CONSIDERAR AS COLUNAS 'Y'. Veja abaixo como é feito o acesso para um pequeno código
+ * que preenche uma matriz de tamanho 2-2: */
+
+	inclua biblioteca Util --> u
+	inteiro cont_x, cont_y, num [2][2]
+	funcao inicio()
+	{
+	
+		
+		para (cont_x = 0; cont_x < u.numero_linhas(num) ; cont_x ++)
+		{
+			para (cont_y = 0; cont_y < u.numero_colunas(num) ; cont_y ++)
+			{
+				escreva ("Informe o valor para o índice [",cont_x,"][",cont_y,"] da matriz : ")
+				leia (num[cont_x][cont_y])
+			}
+		}
+
+		para (cont_x = 0; cont_x < u.numero_linhas(num) ; cont_x ++)
+		{
+			para (cont_y = 0; cont_y < u.numero_colunas(num) ; cont_y ++)
+			{
+				escreva ("Em [",cont_x,"][",cont_y,"] da matriz, temos : ", num[cont_x][cont_y] ,"\n")
+			}
+		}
+	}
+
+/* OBS6 - TALVEZ A MAIS IMPORTANTE DE TODAS (serinho, não esqueça disso pelamorde_____): Caso o usuário tente acessar um índice
+ * que esteja FORA DO VETOR/MATRIZ (um vetor de 3 posições, e tentar acessar por exemplo, a posição 5), teremos uma mensagem de
+ * erro. É como se o algoritmo tentasse acessar 1 espaço de memória que não existe, logo, não há o que ser acessado.
+ *
+ *[ ESPERANDO PELA AULA DE VETORES E MATRIZES PARA LIBERAR ESSE MATERIAL PARA OS COLEGAS ]
+ * > COMPLEMENTAR ESSE MATERIAL, COM O QUE O PROFESSOR POSSA PASSAR EM SALA
+ * 07/03/2023 - 12:26 (material idealizado e escrito por: Filipe de Sá Mascarenhas)

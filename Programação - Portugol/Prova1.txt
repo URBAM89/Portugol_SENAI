@@ -1,0 +1,283 @@
+programa
+{
+	inclua biblioteca Util --> u
+	inclua biblioteca Matematica --> m
+	cadeia fileira1 [11][2], fileira2 [11][2], passageiro
+	inteiro destino, opcao, cont_x, cont_y, fileira, cont_pass = 0, quant_x = 11, quant_y = 2
+	real vendas = 0.0, custo = 0.75
+	
+	funcao inicio()
+	{
+		menu ()
+	}
+
+	funcao aguarde_limpa()
+	{
+		u.aguarde(2500)
+		limpa()
+	}
+
+	funcao menu ()
+	{
+		faca
+		{
+			limpa ()
+			escreva ("Iniciando Sistema de vendas Viação Nova Esperança. Informe O que você gostaria de fazer agora:\n")
+			escreva ("1 - Venda de Nova passagem;\n")
+			escreva ("2 - Poltronas disponiveis;\n")
+			escreva ("3 - Relatátrio;\n")
+			escreva ("4 - Encerrar programa.\n")
+			escreva ("\nSUA OPÇÃO: ")
+			leia (opcao)
+			escolha(opcao)
+			{
+				caso 1:
+				venda_bilhete ()
+				pare
+				caso 2:
+				poltronas ()
+				pare
+				caso 3:
+				relatorio ()
+				pare
+				caso 4:
+				aguarde_limpa()
+				escreva ("Quer mesmo encerrar?\n")
+				pare
+				caso contrario:
+				escreva ("OPÇÃO INVÁLIDA.\n\n")
+				aguarde_limpa()
+				pare
+			}
+			escreva ("Caso queira sair do programa, digite e entre '4'. Caso queira continuar, entre qualquer outro número: ")
+			leia (opcao)
+		}enquanto (opcao != 4)
+
+		se (cont_pass < 10)
+		{
+			escreva ("[ ESSA VIAGEM NÃO ATINGIU A QUANTIDADE MÍNIMA DE PASSAGEIROS (10) PARA SEGUIR VIAGEM ]\n")
+		}
+		senao
+		{
+			escreva ("[ ESSA VIAGEM ATINGIU A QUANTIDADE MÍNIMA DE PASSAGEIROS (10) PARA SEGUIR VIAGEM ]\n ]")
+		}
+		escreva ("\n Muito obrigado por usar o Sistema de vendas Viação nova Esperança! \n")
+	}
+
+	funcao venda_bilhete ()
+	{
+		escreva ("Selecionada a opção de venda de nova passagem...")
+		aguarde_limpa()
+		
+		faca
+		{
+			escreva ("Por favor, informe qual fileira você quer que sua poltrona fique (1 ou 2):")
+			leia (fileira)
+		
+			escolha (fileira)
+			{
+				caso 1:
+				verif_poltrona_venda()
+				pare
+				caso 2:
+				verif_poltrona_venda()
+				pare
+				caso contrario:
+				escreva ("COLUNA INEXISTENTE, POR FAVOR, SELECIONE UMA OPÇÃO VÁLIDA.")
+				aguarde_limpa()
+				pare
+			}
+		}enquanto (fileira < 1 ou fileira > 2)
+	}
+
+	funcao verif_poltrona_venda()
+	{
+		faca{
+			escreva ("Informe a posição que você quer que sua poltrona fique, usando números entre 1 - 22: ")
+			leia (cont_x)
+			cont_x --
+		
+		}enquanto (cont_x < 0 ou cont_x > 21)
+		faca{
+			escreva ("Informe a coluna que você quer que sua poltrona fique, usando números entre 1 - 2\n")
+			escreva ("(1 - Para poltrona na janela; 2 - Para poltrona no corredor): ")
+			leia (cont_y)
+			cont_y --
+			
+		}enquanto (cont_y < 0 ou cont_y > 1)
+
+		escolha (fileira)
+		{
+			caso 1:
+			se (fileira1 [cont_x][cont_y] == "SF" ou fileira1 [cont_x][cont_y] == "MU")
+				{
+					escreva ("Essa poltrona já está ocupada!!")
+					pare
+				}
+			senao
+			{
+				aguarde_limpa ()
+				escreva ("\nInforme o nome do passageiro: ")
+				leia (passageiro)
+				faca
+				{
+					escreva ("\nNo momento, temos destino para 2 cidades:\n1 - São Felipe\n2 - Muritiba\nInforme o destino, usando os números indicados: ")
+					leia (destino)
+					escolha (destino)
+					{
+						caso 1:
+						fileira1 [cont_x][cont_y] = "SF"
+						pare
+						caso 2:
+						fileira1 [cont_x][cont_y] = "MU"
+						pare
+						caso contrario:
+						escreva ("\nDESTINO INVÁLIDO!")
+						aguarde_limpa()
+						pare
+					}
+				}enquanto (destino < 1 ou destino > 2)
+				
+				escreva ("Imprimindo passagem...\n")
+				u.aguarde (4500)
+				escreva ("Pronto! A passagem foi emitida! Segue as informações:\n")
+
+				escreva ("# Nome do passageiro(a): ", passageiro,";\n")
+				escreva ("# Fileira: ", fileira,";\n")
+				escreva ("# Poltrona: [ ", cont_x + 1," ] [ ", cont_y + 1," ];\n")
+				se (fileira1 [cont_x][cont_y] == "SF")
+				{
+					escreva ("# Destino: São Felipe.\n")
+					escreva ("# Custo da passagem: R$ 62,50")
+					vendas += 62.50
+					cont_pass ++
+				}
+				senao
+				{
+					escreva ("# Destino: Muritiba.\n")
+					escreva ("# Custo da passagem: R$ 38,50")
+					vendas += 38.50
+					cont_pass ++
+				}
+				escreva ("Faça 1 boa viagem!\n")
+			}
+			pare
+			
+			caso 2:
+			se (fileira2 [cont_x][cont_y] == "SF" ou fileira2 [cont_x][cont_y] == "MU")
+				{
+					escreva ("Essa poltrona já está ocupada!!")
+					pare
+				}
+			senao
+			{
+				aguarde_limpa ()
+				escreva ("\nInforme o nome do passageiro: ")
+				leia (passageiro)
+				faca
+				{
+					escreva ("\nNo momento, temos destino para 2 cidades:\n1 - São Felipe\n2 - Muritiba\nInforme o destino, usando os números indicados: ")
+					leia (destino)
+					escolha (destino)
+					{
+						caso 1:
+						fileira1 [cont_x][cont_y] = "SF"
+						pare
+						caso 2:
+						fileira1 [cont_x][cont_y] = "MU"
+						pare
+						caso contrario:
+						escreva ("\nDESTINO INVÁLIDO!")
+						aguarde_limpa()
+						pare
+					}
+				}enquanto (destino < 1 ou destino > 2)
+				
+				escreva ("Imprimindo passagem...\n")
+				u.aguarde (4500)
+				escreva ("Pronto! A passagem foi emitida! Segue as informações:\n")
+
+				escreva ("# Nome do passageiro(a): ", passageiro,";\n")
+				escreva ("# Fileira: ", fileira,";\n")
+				escreva ("# Poltrona: [ ", cont_x + 1," ] [ ", cont_y + 1," ];\n")
+				se (fileira2 [cont_x][cont_y] == "SF")
+				{
+					escreva ("# Destino: São Felipe.\n")
+					escreva ("# Custo da passagem: R$ 62,50")
+					vendas += 62.50
+					cont_pass ++
+				}
+				senao
+				{
+					escreva ("# Destino: Muritiba.\n")
+					escreva ("# Custo da passagem: R$ 38,50")
+					vendas += 38.50
+					cont_pass ++
+				}
+				escreva ("Faça boa viagem!\n")
+			}
+			pare
+		}
+
+		
+	}
+
+	funcao poltronas ()
+	{
+		escreva ("Selecionada a opção de demonstração de poltronas disponíveis...")
+		aguarde_limpa()
+		escreva ("Essas são as poltronas ocupadas/disponíveis para a primeira fileira:\n")
+		para (cont_x = 0; cont_x < quant_x; cont_x ++)
+		{
+			para (cont_y = 0; cont_y < quant_y; cont_y ++)
+			{
+				se (fileira1[cont_x][cont_y] == "SF" ou fileira1[cont_x][cont_y] == "MU")
+				{
+					escreva ("[ ",fileira1[cont_x][cont_y]," ]\t\t")
+				}
+				senao
+				{
+					fileira1[cont_x][cont_y] = "LIVRE"
+					escreva ("[ ",fileira1[cont_x][cont_y]," ]\t\t")
+				}
+			}
+			escreva ("\n")
+		}
+		escreva ("LEGENDA:\nLIVRE = Poltrona Livre\nSF = Viagem para São Felipe\nMU = Viagem para Muritiba\n")
+
+		u.aguarde (6000)
+		escreva ("==========================================================================\n")
+		escreva ("Essas são as poltronas ocupadas/disponíveis para a segunda fileira:\n")
+		para (cont_x = 0; cont_x < quant_x; cont_x ++)
+		{
+			para (cont_y = 0; cont_y < quant_y; cont_y ++)
+			{
+				se (fileira2[cont_x][cont_y] == "SF" ou fileira2[cont_x][cont_y] == "MU")
+				{
+					escreva ("[ ",fileira2[cont_x][cont_y]," ]\t\t")
+				}
+				senao
+				{
+					fileira2[cont_x][cont_y] = "LIVRE"
+					escreva ("[ ",fileira2[cont_x][cont_y]," ]\t\t")
+				}
+			}
+			escreva ("\n")
+		}
+		escreva ("LEGENDA\nLIVRE = Poltrona Livre\nSF = Viagem para São Felipe\nMU = Viagem para Muritiba\n")
+	}
+
+	funcao relatorio ()
+	{
+		escreva ("Selecionada a opção de relatório de vendas...")
+		aguarde_limpa()
+		escreva ("\nEsse é o relatório atual de vendas:\n")
+		escreva ("* Total de passagens vendidas: ", cont_pass,";\n")
+		se (cont_pass < 10)
+		{
+			escreva ("[ ATENÇÃO, AINDA NÃO SE ATINGIU O MÍNIMO DE PASSAGEIROS PARA ESSA VIAGEM (10) !! ]\n")
+		}
+		escreva ("* Total arrecadado em vendas: R$", m.arredondar (vendas,2),";\n")
+		escreva ("* O lucro obtido foi de: R$", m.arredondar (vendas - (vendas * custo), 2),";\n")	
+	}
+}

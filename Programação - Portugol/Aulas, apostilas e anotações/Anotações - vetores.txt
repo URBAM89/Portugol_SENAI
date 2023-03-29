@@ -1,0 +1,71 @@
+/* Sobre Vetores
+ * CONCEITO DE VETORES: Tipo de variáveis que, são utilizadas para armazenar vários dados. O que esses dados 
+ * tem em comum é que eles são do mesmo tipo.
+ * 
+ * DECLARAÇÃO:
+ * Tipo_da_Variável "Nome_do_vetor" [x]
+ * Esse '[x]' é que identifica um vetor. 'x' é 1 valor que pode limitar o tamanho desse vetor, sendo opcional,
+ * caso já queira atribuir valores no vetor na declaração da variável.
+ *  
+ * 'x' também serve para indentificar o ÍNDICE do vetor. Nós usaremos esse índice para acessar os valores armaze-
+ * nados no vetor, e a declaração desse índice deve ser com um valor INTEIRO. E pra deixar bem claro: TAMANHO E 
+ * ÍNDICE NÃO SÃO A MESMA COISA.
+ *  
+ * OBS1: É importante lembrar que o índice começa do '0' (zero), e vai até o 'TAMANHO DO VETOR - 1' (' x - 1 ').
+ * OBS2: Podemos pensar no conceito de vetores, como se fosse uma rua, onde cada morador possuí a sua casa, e 
+ * cada casa possuí o seu endereço. Exemplos de vetores: */
+
+	inteiro a []	 					/* Vetor de tipo inteiro, chamado 'a', que possui NO MOMENTO 1
+									   posição. Essa posição é a '0';*/
+	
+	cadeia nome [3] 						/* Vetor de tipo cadeia, chamado 'nome', que possui 3 posições AINDA
+									   NÃO PREENCHIDAS, que vão de 0 até 2. ATENÇÃO: Quando o vetor é
+									   declarado dessa forma, NÃO TEREMOS ERRO (mais explicação adiante);
+									*/
+	
+	real altura [4]= {1.20, 2.00, 1.70, 10.00}	/* Vetor de tipo real, chamado 'altura', que possui 4 posições 
+									   que vão de 0 até 3 DEVIDAMENTE PREENCHIDAS. Para ler as in-
+									   formações desse vetor,faremos da seguinte forma:
+									   Em altura[0] temos o valor '1.20'
+									   Em altura[1] temos o valor '2.00'
+									   Em altura[2] temos o valor '1.70'
+									   Em altura[3] temos o valor '10.0'; */
+	
+	caracter letras [7] = {'F', 'U', 'T', 'I'}	/* Vetor de tipo caractere, chamado 'letras', que possui 7 posições que
+									   vão de 0 até 6. As posições de [0] a [3] estão preenchidas, enquanto
+									   as posições de [4] a [6] não tem valor. Para o Portugol, isso gera
+									   um erro, pois é esperado que, SE DECLARE VALOR EM TODAS AS POSIÇÕES 
+								         (ou se declara todos os valores, ou nenhum). */
+
+/* Para acessar os valores de um vetor, podemos utilizar o conceito aprendido em estruturas de repetição, onde nós iremos co-
+ * locar o nosso vetor nessa estrutura, para que possamos fazer o desejado: Inserir ou alterar valores, ou procurar algo que
+ * desejamos. Veja o exemplo abaixo, utilizando a estrutura de repetição para para encontrar o valor '2' (lembrando que isso
+ * é 1 exemplo SIMPLES de busca, veremos mais tarde modelos mais sofisticados): */
+	
+	inclua biblioteca Util --> u 	/* Biblioteca inserida, que dentre muitas funções, usaremos para identificar quantos ele-
+	                                 mentos tem no vetor. Lembre de usa-la para facilitar seu trabalho. 😉 */
+	
+	inteiro num [6] = {3, 8, 9, 7, 2, 7}
+	inteiro cont, achou = 0
+	
+	funcao inicio()
+	{
+	para (cont = 0; cont < u.numero_elementos(num); cont ++) /* u.numero_elementos(variavel) é o comando da biblioteca que 
+											identifica quantos elementos tem no vetor. */ 
+	{
+		se (num [cont] == 2)
+		{
+			achou ++
+			pare
+		}
+	}
+
+		se (achou == 1)
+		{
+			escreva ("Número 2 encontrado na posição: ", cont)
+		}
+		senao
+		{
+			escreva ("Número 2 não foi encontrado.")
+		}
+	}

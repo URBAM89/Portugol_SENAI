@@ -1,0 +1,180 @@
+/* Código revisado da calculadora usada na mini-aula #001, mas agora, usando o conhecimento de 
+ * funções e vetores, para permitir que nosso código fique um pouco mais organizado.*/
+
+programa
+{
+	inclua biblioteca Util --> u
+	inclua biblioteca Matematica --> m
+	inteiro num1 = 0, num2 = 0, cont = 0, opcao, opcao_u, ult_num [2]
+
+	funcao pedir_numero (inteiro pnum1, inteiro pnum2)
+	{
+		escreva ("Insira o 1º número: ")
+		leia (num1)
+		escreva ("Insira o 2º número: ")
+		leia (num2)
+	}
+	
+	funcao inteiro soma (inteiro snum1, inteiro snum2)
+	{
+		ult_num [0] = snum1
+		ult_num [1] = snum2
+		snum1 += snum2
+		retorne snum1
+	}
+
+	funcao inteiro sub (inteiro subnum1, inteiro subnum2)
+	{
+		ult_num [0] = subnum1
+		ult_num [1] = subnum2
+		subnum1 -= subnum2
+		retorne subnum1
+	}
+
+	funcao inteiro mult (inteiro multnum1, inteiro multnum2)
+	{
+		ult_num [0] = multnum1
+		ult_num [1] = multnum2
+		multnum1 *= multnum2
+		retorne multnum1
+	}
+
+	funcao real div (real divnum1,real divnum2)
+	{
+		ult_num [0] = divnum1
+		ult_num [1] = divnum2
+		divnum1 /= divnum2
+		retorne m.arredondar(divnum1, 2)
+	}
+
+	funcao inteiro resto (inteiro restonum1, inteiro restonum2)
+	{
+		ult_num [0] = restonum1
+		ult_num [0] = restonum2
+		inteiro res = restonum1 % restonum2
+		retorne res
+	}
+	
+	funcao aguarde_contar_limpar ()
+	{
+		u.aguarde (3000)
+		cont ++
+		limpa()
+	}
+	
+	funcao inicio()
+	{
+		menu ()
+		fim ()
+	}
+	
+	funcao menu ()
+	{
+		faca
+		{
+			escreva ("Escolha uma das opções abaixo:\n")
+			escreva ("1 - Soma\n2 - Subtração\n3 - Multiplicação\n4 - Divisão\n")
+			escreva ("5 - Resto da divisão (Módulo)\n")
+			escreva ("Insira '0' para encerrar. Insira agora a operação a ser feita: ")
+			leia (opcao)
+			
+			escolha (opcao)
+			{
+			caso 1:
+			pedir_numero (num1, num2)
+			escreva (num1, " + ", num2, " = ", soma(num1,num2))
+			aguarde_contar_limpar ()
+			pare
+			caso 2:
+			pedir_numero (num1, num2)
+			escreva (num1, " - ", num2, " = ", sub(num1,num2))
+			aguarde_contar_limpar ()
+			pare
+			caso 3:
+			pedir_numero (num1, num2)
+			escreva (num1, " * ", num2, " = ", mult(num1,num2))
+			aguarde_contar_limpar ()
+			pare
+			caso 4:
+			pedir_numero (num1, num2)
+			escreva (num1, " / ", num2, " = ", div(num1,num2))
+			aguarde_contar_limpar ()
+			pare
+			caso 5:
+			pedir_numero (num1, num2)
+			escreva (num1, " % ", num2, " = ", resto(num1,num2))
+			aguarde_contar_limpar ()
+			pare
+			caso 0:
+			pare
+			caso contrario:
+			escreva ("OPÇÃO INVÁLIDA!\n")
+			u.aguarde (2000)
+			limpa ()
+			}
+			se (opcao != 0)
+			{
+				opcao_u = opcao
+			}
+		}enquanto (opcao != 0)
+	}
+
+	funcao fim ()
+	{
+	u.aguarde(500)
+	limpa()
+	ultimo_num_op ()
+	escreva ("\n########################################\n")
+	escreva ("# OBRIGADO POR USAR A MINI-CALCULADORA #\n")
+	escreva ("########################################")
+	}
+
+	funcao ultimo_num_op ()
+	{
+		se (cont == 0)
+		{
+			escreva ("Não foram feitas operações.\n")
+		}
+		senao
+		{
+			escreva ("Certo. A titulo de curiosidade, foram feitas ", cont, " operações")
+			escreva ("\ndurante a execução do código.\n")
+			
+			escreva ("Os últimos números inseridos foram:\n")
+			para (cont = 0; cont < 2; cont ++)
+			{
+				escreva (ult_num[cont], "\t")
+			}
+			escolha (opcao_u)
+			{
+				caso 1:
+				escreva ("\n\nSua ultima operação foi: SOMA\n\n")
+				pare
+				caso 2:
+				escreva ("\n\nSua ultima operação foi: SUBTRAÇÃO\n\n")
+				pare
+				caso 3:
+				escreva ("\n\nSua ultima operação foi: MULTIPLICAÇÃO\n\n")
+				pare
+				caso 4:
+				escreva ("\n\nSua ultima operação foi: DIVISÃO\n\n")
+				pare
+				caso 5:
+				escreva ("\n\nSua ultima operação foi: MÓDULO\n\n")
+				pare
+			}
+		}
+	}
+}
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 1661; 
+ * @DOBRAMENTO-CODIGO = [9, 17, 25, 33, 41, 49, 57, 121, 131];
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
